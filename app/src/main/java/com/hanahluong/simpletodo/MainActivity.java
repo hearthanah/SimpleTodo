@@ -11,14 +11,25 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
-    protected void onCreate(Bundle savedInstance) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, main);
+        getMenuInflater().inflate(R.menu.main_menu, main);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
