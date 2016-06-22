@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
         setupListViewListener();
+        setupEditViewListener();
     }
 
     private void setupListViewListener() {
