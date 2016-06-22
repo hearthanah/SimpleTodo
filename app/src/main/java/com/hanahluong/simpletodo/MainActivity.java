@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void readItems() {
         File filesDir = getFilesDir();
         File todoFile = new File(filesDir, "todo.txt");
+        
         try {
             items = new ArrayList<String>(FileUtils.readLines(todoFile));
         } catch (IOException e) {
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
     public void writeItems() {
         File filesDir = getFilesDir();
         File todoFile = new File(filesDir, "todo.txt");
+
         try {
             FileUtils.writeLines(todoFile, items);
         } catch (IOException e) {
