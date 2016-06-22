@@ -27,12 +27,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         lvItems = (ListView)findViewById(R.id.lvItems);
-//        items = new ArrayList<>();
         readItems();
         itemsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1, items);
         lvItems.setAdapter(itemsAdapter);
-//        items.add("First Item");
-//        items.add("Second Item");
         setupListViewListener();
     }
 
