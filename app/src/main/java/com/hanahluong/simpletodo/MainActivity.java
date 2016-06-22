@@ -1,5 +1,6 @@
 package com.hanahluong.simpletodo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.content.Intent;
 
 import org.apache.commons.io.FileUtils;
 
@@ -41,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
                 itemsAdapter.notifyDataSetChanged();
                 writeItems();
                 return true;
+            }
+        });
+    }
+
+    private void setupEditViewListener() {
+        lvItems.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View item, int pos, long id) {
+                Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
+                startActivity(intent);
             }
         });
     }

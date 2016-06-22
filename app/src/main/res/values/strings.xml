@@ -3,5 +3,5 @@
     <string name="add_item_lable">Add Item</string>
     <string name="title_activity_edit_item">EditItemActivity</string>
     <string name="edit_item_label">Edit Item Below:</string>
-    <string name="submit_button_label">Submit</string>
+    <string name="submit_button_label">Save</string>
 </resources>
