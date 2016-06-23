@@ -34,7 +34,6 @@ public class EditItemActivity extends AppCompatActivity {
 
     public void onSubmit(View view) {
 
-
         Intent data = new Intent();
 
         data.putExtra("newItem", etName.getText().toString());

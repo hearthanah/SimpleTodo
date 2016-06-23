@@ -87,12 +87,11 @@ public class MainActivity extends AppCompatActivity {
             items.set(pos, newName);
             itemsAdapter.notifyDataSetChanged();
 
+            writeItems();
+
         }
     }
 
-//    public void replaceItem (String newItemName, int pos) {
-//        itemsAdapter.set(pos, newItemName);
-//    }
 
     public void readItems() {
         File filesDir = getFilesDir();
