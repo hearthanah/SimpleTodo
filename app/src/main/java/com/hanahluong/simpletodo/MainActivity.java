@@ -11,11 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.content.Intent;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> items;
     ArrayAdapter<String> itemsAdapter;
     ListView lvItems;
+
+    private final int REQUEST_CODE = 156;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View item, int pos, long id) {
                 Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
-                startActivity(intent);
+                intent.putExtra("position", pos);
+//                intent.putExtra("item", item);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
     }
@@ -66,6 +72,18 @@ public class MainActivity extends AppCompatActivity {
         writeItems();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            String newName = data.getExtras().getString("newItem");
+//            int pos = data.getExtras().getInt("position");
+            Toast.makeText(this, newName, Toast.LENGTH_LONG).show();
+        }
+    }
+
+//    public void replaceItem (String newItemName, int pos) {
+//        itemsAdapter.set(pos, newItemName);
+//    }
 
     public void readItems() {
         File filesDir = getFilesDir();
