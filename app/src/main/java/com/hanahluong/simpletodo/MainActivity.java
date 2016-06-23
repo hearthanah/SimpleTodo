@@ -11,9 +11,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.content.Intent;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -57,8 +59,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapter, View item, int pos, long id) {
                 Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
+
+                TextView textView = (TextView) item;
+                String text = textView.getText().toString();
+
                 intent.putExtra("position", pos);
-//                intent.putExtra("item", item);
+                intent.putExtra("item", text);
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
@@ -77,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
         if(resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             String newName = data.getExtras().getString("newItem");
 //            int pos = data.getExtras().getInt("position");
-            Toast.makeText(this, newName, Toast.LENGTH_LONG).show();
         }
     }
 
