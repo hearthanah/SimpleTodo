@@ -15,6 +15,7 @@ public class EditItemActivity extends AppCompatActivity {
 
     String oldItem;
     EditText etName;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class EditItemActivity extends AppCompatActivity {
 
         Intent getIntent = getIntent();
         oldItem = getIntent.getStringExtra("item");
+        position = getIntent.getIntExtra("position", 0);
 
         etName =(EditText) findViewById(R.id.editText);
         etName.setText(oldItem);
@@ -36,6 +38,7 @@ public class EditItemActivity extends AppCompatActivity {
         Intent data = new Intent();
 
         data.putExtra("newItem", etName.getText().toString());
+        data.putExtra("position", position);
 
         setResult(RESULT_OK, data);
         finish();

@@ -82,7 +82,11 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
             String newName = data.getExtras().getString("newItem");
-//            int pos = data.getExtras().getInt("position");
+            int pos = data.getExtras().getInt("position");
+
+            items.set(pos, newName);
+            itemsAdapter.notifyDataSetChanged();
+
         }
     }
 
