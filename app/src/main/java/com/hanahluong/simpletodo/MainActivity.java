@@ -14,6 +14,8 @@ import android.content.Intent;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.activeandroid.query.Delete;
+
 import org.apache.commons.io.FileUtils;
 import org.w3c.dom.Text;
 
@@ -21,6 +23,7 @@ import java.io.File;
 import java.io.IOException;
 import java.lang.ref.ReferenceQueue;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,25 +97,26 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void readItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
-        
-        try {
-            items = new ArrayList<String>(FileUtils.readLines(todoFile));
-        } catch (IOException e) {
-            items = new ArrayList<String>();
+
+        List<TodoTask> list = TodoTask.getAll();
+        items = new ArrayList<String>();
+
+        for (TodoTask t : list) {
+            items.add(t.text);
         }
+
     }
 
     public void writeItems() {
-        File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "todo.txt");
 
-        try {
-            FileUtils.writeLines(todoFile, items);
-        } catch (IOException e) {
-            e.printStackTrace();
+        new Delete().from(TodoTask.class).where("1=1").execute();
+
+        for(String s: items) {
+            TodoTask task = new TodoTask();
+            task.text = s;
+            task.save();
         }
+
     }
 
 }
