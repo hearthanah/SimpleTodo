@@ -51,7 +51,7 @@ Some challenges that arose during the creation of this application:
   
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2016 Hanah Luong
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
